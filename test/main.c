@@ -77,5 +77,32 @@ int main() {
 
     jason_parser_free(parser3);
 
+    char *json4 = "null";
+    size_t json_len4 = 4;
+
+    jason_parser *parser4 = jason_parser_new(json4, json_len4);
+
+    jason_parse_result result4 = jason_parse(parser4);
+
+    if (result4 != JASON_PARSE_OK) {
+        return 12;
+    }
+
+    jason_tokens_ll_node *node4 = parser4->_tokens_head;
+
+    if (node4 == NULL) {
+        return 13;
+    }
+
+    if (node4->token->type != JASON_TYPE_NULL) {
+        return 14;
+    }
+
+    if (node4->next != NULL) {
+        return 15;
+    }
+
+    jason_parser_free(parser4);
+
     return 0;
 }

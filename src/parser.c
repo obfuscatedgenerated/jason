@@ -55,7 +55,7 @@ jason_parse_result jason_parse_next(jason_parser *parser) {
         case 'f':
             return jason_parse_boolean(parser);
         case 'n':
-            //return jason_parse_null(parser);
+            return jason_parse_null(parser);
         case '-':
             //return jason_parse_number(parser);
         default:
