@@ -79,6 +79,8 @@ jason_parse_result jason_parser_run(jason_parser *parser) {
         return JASON_PARSE_UNEXPECTED_END;
     }
 
+    // TODO: should only loop/recurse if it is an object or array
+    // perhaps revert looping and instead recurse in the subparsers
     while (parser->_pos < parser->json_len) {
         jason_parse_result result = jason_parse_next(parser);
 
