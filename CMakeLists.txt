@@ -11,3 +11,7 @@ add_library(jason SHARED ${SOURCES})
 file(GLOB_RECURSE TEST_SOURCES "test/*.c")
 add_executable(jason_test ${TEST_SOURCES})
 target_link_libraries(jason_test jason)
+
+enable_testing()
+
+add_test(NAME jason_test COMMAND jason_test)
