@@ -1,11 +1,11 @@
-#include "hashtable/kv_dict.h"
+#include "hashtable/jason_object.h"
 #include "hashtable/fnv1a.h"
 
 #include <stdlib.h>
 #include <string.h>
 
-kv_dict *new_dict(void) {
-    kv_dict *dict = malloc(sizeof(kv_dict));
+jason_object *jason_object_new(void) {
+    jason_object *dict = malloc(sizeof(jason_object));
 
     if (dict == NULL) {
         return NULL;
@@ -15,7 +15,7 @@ kv_dict *new_dict(void) {
     dict->capacity = INIT_CAPACITY;
 
     // allocate entry space and zero it out (so values are clearly NULL when unset)
-    dict->entries = calloc(dict->capacity, sizeof(kv_entry));
+    dict->entries = calloc(dict->capacity, sizeof(jason_object_entry));
 
     if (dict->entries == NULL) {
         free(dict);
@@ -25,15 +25,15 @@ kv_dict *new_dict(void) {
     return dict;
 }
 
-void free_dict(kv_dict *dict) {
+void jason_object_free(jason_object *dict) {
     // TODO: free each entry
     // iterating each entry and freeing it causes a corruption error
     free(dict->entries);
     free(dict);
 }
 
-static int raw_set(kv_entry *entries, size_t capacity, char *key, size_t key_size, struct jason_token_s *value) {
-    kv_entry *entry = malloc(sizeof(kv_entry));
+static int raw_set(jason_object_entry *entries, size_t capacity, char *key, size_t key_size, struct jason_token_s *value) {
+    jason_object_entry *entry = malloc(sizeof(jason_object_entry));
 
     if (entry == NULL) {
         return 1;
@@ -68,11 +68,11 @@ static int raw_set(kv_entry *entries, size_t capacity, char *key, size_t key_siz
 }
 
 
-static int expand(kv_dict *dict) {
+static int expand(jason_object *dict) {
     size_t new_capacity = dict->capacity * 2;
 
     // realloc?
-    kv_entry *new_entries = calloc(dict->capacity, sizeof(kv_entry));
+    jason_object_entry *new_entries = calloc(dict->capacity, sizeof(jason_object_entry));
 
     if (new_entries == NULL) {
         return 1;
@@ -80,7 +80,7 @@ static int expand(kv_dict *dict) {
 
     // migrate old non-null entries
     for (size_t i = 0; i < dict->capacity; i++) {
-        kv_entry entry = dict->entries[i];
+        jason_object_entry entry = dict->entries[i];
 
         if (entry.key != NULL) {
             int set_err = raw_set(new_entries, new_capacity, entry.key, strlen(entry.key), entry.value);
@@ -102,7 +102,7 @@ static int expand(kv_dict *dict) {
 }
 
 
-int set_item(kv_dict *dict, char *key, size_t key_size, struct jason_token_s *value) {
+int jason_object_set(jason_object *dict, char *key, size_t key_size, struct jason_token_s *value) {
     if (value == NULL) {
         return 1;
     }
@@ -127,7 +127,7 @@ int set_item(kv_dict *dict, char *key, size_t key_size, struct jason_token_s *va
     return 0;
 }
 
-struct jason_token_s *get_item(kv_dict *dict, char *key, size_t key_size) {
+struct jason_token_s *jason_object_get(jason_object *dict, char *key, size_t key_size) {
     uint64_t hash = fnv1a(key, key_size);
 
     // use AND to encode hash in terms of our array's indices (guess at index)

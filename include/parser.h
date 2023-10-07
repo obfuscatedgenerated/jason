@@ -1,7 +1,7 @@
 #ifndef JASON_PARSER_H
 #define JASON_PARSER_H
 
-#include "hashtable/kv_dict.h"
+#include "hashtable/jason_object.h"
 #include "lib_def.h"
 
 typedef enum {
@@ -34,7 +34,7 @@ struct jason_token_s {
         double number;
         char *string;
         struct jason_tokens_ll_node_s *array;
-        struct kv_dict_s *object;
+        struct jason_object_s *object;
     } value;
 };
 typedef struct jason_token_s jason_token;
