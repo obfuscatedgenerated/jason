@@ -1,2 +1,1 @@
-# { •͜ʖ• } &nbsp; &nbsp; jason
-<p style="font-size: xx-large">the friendly JSON parser.</p>
+# { •͜ʖ• } &nbsp; &nbsp; jason <br /> the friendly JSON parser.
