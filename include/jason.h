@@ -1,6 +1,0 @@
-#ifndef JASON_LIBRARY_H
-#define JASON_LIBRARY_H
-
-
-
-#endif //JASON_LIBRARY_H
