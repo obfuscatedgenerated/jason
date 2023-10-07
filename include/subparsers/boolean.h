@@ -3,6 +3,6 @@
 
 #include "parser.h"
 
-jason_parse_result jason_parse_boolean(jason_parser *parser);
+PRIVATE jason_parse_result jason_parse_boolean(jason_parser *parser);
 
 #endif //JASON_SUBPARSERS_BOOLEAN_H

@@ -2,6 +2,7 @@
 #define FNV1A_HASHTABLE_KV_DICT_H
 
 #include <stddef.h>
+#include "lib_def.h"
 
 #define INIT_CAPACITY 8
 
@@ -21,13 +22,13 @@ struct kv_dict_s {
 typedef struct kv_dict_s kv_dict;
 
 // returns NULL on failure
-kv_dict* new_dict(void);
+PUBLIC kv_dict* new_dict(void);
 
-void free_dict(kv_dict *dict);
+PUBLIC void free_dict(kv_dict *dict);
 
 // returns 1 on failure
-int set_item(kv_dict *dict, char *key, size_t key_size, void *value);
+PUBLIC int set_item(kv_dict *dict, char *key, size_t key_size, void *value);
 
-void *get_item(kv_dict *dict, char *key, size_t key_size);
+PUBLIC void *get_item(kv_dict *dict, char *key, size_t key_size);
 
 #endif //FNV1A_HASHTABLE_KV_DICT_H

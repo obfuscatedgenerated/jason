@@ -42,7 +42,7 @@ void jason_parser_free(jason_parser *parser) {
     free(parser);
 }
 
-static jason_parse_result jason_parse_next(jason_parser *parser) {
+jason_parse_result jason_parse_next(jason_parser *parser) {
     switch (parser->json[parser->_pos]) {
         case '{':
             //return jason_parse_object(parser);

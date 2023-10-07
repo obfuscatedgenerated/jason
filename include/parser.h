@@ -2,6 +2,7 @@
 #define JASON_PARSER_H
 
 #include "hashtable/kv_dict.h"
+#include "lib_def.h"
 
 typedef enum {
     JASON_PARSE_OK,
@@ -58,10 +59,12 @@ typedef struct {
 } jason_parser;
 
 
-jason_parser *jason_parser_new(char *json, size_t json_len);
+PUBLIC jason_parser *jason_parser_new(char *json, size_t json_len);
 
-void jason_parser_free(jason_parser *parser);
+PUBLIC void jason_parser_free(jason_parser *parser);
 
-jason_parse_result jason_parser_run(jason_parser *parser);
+PRIVATE jason_parse_result jason_parse_next(jason_parser *parser);
+
+PUBLIC jason_parse_result jason_parser_run(jason_parser *parser);
 
 #endif //JASON_PARSER_H
