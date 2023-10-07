@@ -37,11 +37,13 @@ struct jason_token {
         kv_dict *object;
     } value;
 };
+typedef struct jason_token jason_token;
 
 struct jason_tokens_ll_node {
     struct jason_token *token;
     struct jason_tokens_ll_node *next;
 };
+typedef struct jason_tokens_ll_node jason_tokens_ll_node;
 
 
 typedef struct {
