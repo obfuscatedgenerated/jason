@@ -4,6 +4,7 @@ project(jason C)
 set(CMAKE_C_STANDARD 11)
 
 include_directories(include)
+add_compile_definitions(JASON_SHOW_PRIVATES)
 
 file(GLOB_RECURSE SOURCES "src/*.c")
 add_library(jason SHARED ${SOURCES})
