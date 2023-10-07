@@ -18,7 +18,7 @@ typedef enum {
 
 
 typedef enum {
-    JASON_TYPE_UNDEFINED,
+    JASON_TYPE_UNDEFINED, ///< in general, the whole token will be NULL. it is unlikely this type will be used, unless you manually set it upon a token.
     JASON_TYPE_NULL,
     JASON_TYPE_BOOLEAN,
     JASON_TYPE_NUMBER,
