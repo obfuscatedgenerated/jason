@@ -31,7 +31,7 @@ void jason_parser_free(jason_parser *parser) {
     }
 
     while (parser->_tokens_head != NULL) {
-        struct jason_tokens_ll_node *node = parser->_tokens_head;
+        struct jason_tokens_ll_node_s *node = parser->_tokens_head;
         parser->_tokens_head = parser->_tokens_head->next;
 
         //jason_token_free(node->token);

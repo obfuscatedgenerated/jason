@@ -27,23 +27,23 @@ typedef enum {
     JASON_TYPE_OBJECT,
 } jason_type;
 
-struct jason_token {
+struct jason_token_s {
     jason_type type;
     union {
         int boolean;
         double number;
         char *string;
-        struct jason_tokens_ll_node *array;
-        kv_dict *object;
+        struct jason_tokens_ll_node_s *array;
+        struct kv_dict_s *object;
     } value;
 };
-typedef struct jason_token jason_token;
+typedef struct jason_token_s jason_token;
 
-struct jason_tokens_ll_node {
-    struct jason_token *token;
-    struct jason_tokens_ll_node *next;
+struct jason_tokens_ll_node_s {
+    struct jason_token_s *token;
+    struct jason_tokens_ll_node_s *next;
 };
-typedef struct jason_tokens_ll_node jason_tokens_ll_node;
+typedef struct jason_tokens_ll_node_s jason_tokens_ll_node;
 
 
 typedef struct {
@@ -52,8 +52,8 @@ typedef struct {
 
     size_t _pos;
 
-    struct jason_tokens_ll_node *_tokens_head;
-    struct jason_tokens_ll_node *_tokens_current;
+    struct jason_tokens_ll_node_s *_tokens_head;
+    struct jason_tokens_ll_node_s *_tokens_current;
 } jason_parser;
 
 
