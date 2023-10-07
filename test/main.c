@@ -7,7 +7,7 @@ int main() {
 
     jason_parser *parser = jason_parser_new(json, json_len);
 
-    jason_parse_result result = jason_parse_boolean(parser);
+    jason_parse_result result = jason_parse(parser);
 
     if (result != JASON_PARSE_OK) {
         return 1;
@@ -38,7 +38,7 @@ int main() {
 
     jason_parser *parser2 = jason_parser_new(json2, json_len2);
 
-    jason_parse_result result2 = jason_parse_boolean(parser2);
+    jason_parse_result result2 = jason_parse(parser2);
 
     if (result2 != JASON_PARSE_OK) {
         return 6;

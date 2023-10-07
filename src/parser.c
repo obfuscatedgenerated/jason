@@ -53,7 +53,7 @@ jason_parse_result jason_parse_next(jason_parser *parser) {
             //return jason_parse_string(parser);
         case 't':
         case 'f':
-            //return jason_parse_boolean(parser);
+            return jason_parse_boolean(parser);
         case 'n':
         case 'u':
             //return jason_parse_nullable(parser);
