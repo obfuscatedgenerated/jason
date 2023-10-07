@@ -17,7 +17,8 @@ typedef enum {
 
 
 typedef enum {
-    JASON_TYPE_NULLABLE,
+    JASON_TYPE_UNDEFINED,
+    JASON_TYPE_NULL,
     JASON_TYPE_BOOLEAN,
     JASON_TYPE_NUMBER,
     JASON_TYPE_STRING,

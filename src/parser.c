@@ -4,7 +4,7 @@
 #include "subparsers/array.h"
 #include "subparsers/string.h"
 #include "subparsers/boolean.h"
-#include "subparsers/nullable.h"
+#include "subparsers/null.h"
 #include "subparsers/number.h"
 
 #include <stdlib.h>
@@ -55,7 +55,7 @@ jason_parse_result jason_parse_next(jason_parser *parser) {
         case 'f':
             return jason_parse_boolean(parser);
         case 'n':
-            //return jason_parse_nullable(parser);
+            //return jason_parse_null(parser);
         case '-':
             //return jason_parse_number(parser);
         default:
