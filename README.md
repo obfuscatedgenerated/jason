@@ -1,2 +1,2 @@
-# {•͜ʖ•} &nbsp; &nbsp; &nbsp; jason
-<font size="6">the friendly JSON parser.</font>
+# { •͜ʖ• } &nbsp; &nbsp; jason
+<p style="font-size: xx-large">the friendly JSON parser.</p>
