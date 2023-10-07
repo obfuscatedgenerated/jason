@@ -6,7 +6,7 @@ int main() {
 
     jason_parser *parser = jason_parser_new(json, json_len);
 
-    jason_parse_result result = jason_parse(parser);
+    jason_parse_result result = jason_parser_run(parser);
 
     if (result != JASON_PARSE_OK) {
         return 1;
@@ -37,7 +37,7 @@ int main() {
 
     jason_parser *parser2 = jason_parser_new(json2, json_len2);
 
-    jason_parse_result result2 = jason_parse(parser2);
+    jason_parse_result result2 = jason_parser_run(parser2);
 
     if (result2 != JASON_PARSE_OK) {
         return 6;
@@ -68,7 +68,7 @@ int main() {
 
     jason_parser *parser3 = jason_parser_new(json3, json_len3);
 
-    jason_parse_result result3 = jason_parse(parser3);
+    jason_parse_result result3 = jason_parser_run(parser3);
 
     if (result3 != JASON_PARSE_INVALID_TOKEN) {
         return 11;
@@ -81,7 +81,7 @@ int main() {
 
     jason_parser *parser4 = jason_parser_new(json4, json_len4);
 
-    jason_parse_result result4 = jason_parse(parser4);
+    jason_parse_result result4 = jason_parser_run(parser4);
 
     if (result4 != JASON_PARSE_OK) {
         return 12;

@@ -43,7 +43,7 @@ void jason_parser_free(jason_parser *parser) {
 }
 
 // TODO: need to recognise when key
-jason_parse_result jason_parse_next(jason_parser *parser) {
+static jason_parse_result jason_parse_next(jason_parser *parser) {
     switch (parser->json[parser->_pos]) {
         case '{':
             //return jason_parse_object(parser);
@@ -67,7 +67,7 @@ jason_parse_result jason_parse_next(jason_parser *parser) {
     }
 }
 
-jason_parse_result jason_parse(jason_parser *parser) {
+jason_parse_result jason_parser_run(jason_parser *parser) {
     if (parser == NULL) {
         return JASON_PARSE_NULL_PARSER;
     }
