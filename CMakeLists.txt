@@ -8,19 +8,18 @@ include_directories(include)
 file(GLOB_RECURSE SOURCES "src/*.c")
 add_library(jason SHARED ${SOURCES})
 
-file(GLOB_RECURSE TEST_SOURCES "test/*.c")
-add_executable(jason_test ${TEST_SOURCES})
-target_link_libraries(jason_test jason)
+file(GLOB_RECURSE FULL_ACCESS_TEST_SOURCES "test/full_access/*.c")
+add_executable(jason_full_access_test ${FULL_ACCESS_TEST_SOURCES})
+target_link_libraries(jason_full_access_test jason)
 
 target_compile_definitions(jason PRIVATE JASON_SHOW_PRIVATES)
-target_compile_definitions(jason_test PRIVATE JASON_SHOW_PRIVATES)
+target_compile_definitions(jason_full_access_test PRIVATE JASON_SHOW_PRIVATES)
 
-file(GLOB_RECURSE OOS_TEST_SOURCES "oos-test/*.c")
+file(GLOB_RECURSE OOS_TEST_SOURCES "test/oos/*.c")
 add_executable(jason_oos_test ${OOS_TEST_SOURCES})
 target_link_libraries(jason_oos_test jason)
 
 enable_testing()
 
-add_test(NAME jason_test COMMAND jason_test)
+add_test(NAME jason_full_access_test COMMAND jason_full_access_test)
 add_test(NAME jason_oos_test COMMAND jason_oos_test)
-
