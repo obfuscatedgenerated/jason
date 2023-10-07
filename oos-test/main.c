@@ -1,6 +1,6 @@
 #include "parser.h"
 
-// out of source test, private functions are not visible
+// simulation of an out of source test, private functions are not visible
 
 int main() {
     char *json = "true";
