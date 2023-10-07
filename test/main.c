@@ -1,3 +1,4 @@
+#include <string.h>
 #include "parser.h"
 
 int main() {
@@ -102,6 +103,37 @@ int main() {
     }
 
     jason_parser_free(parser4);
+
+    char *json5 = "\"hello\"";
+    size_t json_len5 = 7;
+
+    jason_parser *parser5 = jason_parser_new(json5, json_len5);
+
+    jason_parse_result result5 = jason_parser_run(parser5);
+
+    if (result5 != JASON_PARSE_OK) {
+        return 16;
+    }
+
+    jason_tokens_ll_node *node5 = parser5->_tokens_head;
+
+    if (node5 == NULL) {
+        return 17;
+    }
+
+    if (node5->token->type != JASON_TYPE_STRING) {
+        return 18;
+    }
+
+    if (strcmp(node5->token->value.string, "hello") != 0) {
+        return 19;
+    }
+
+    if (node5->next != NULL) {
+        return 20;
+    }
+
+    jason_parser_free(parser5);
 
     return 0;
 }

@@ -49,7 +49,7 @@ jason_parse_result jason_parse_next(jason_parser *parser) {
         case '[':
             //return jason_parse_array(parser);
         case '"':
-            //return jason_parse_string(parser);
+            return jason_parse_string(parser);
         case 't':
         case 'f':
             return jason_parse_boolean(parser);
