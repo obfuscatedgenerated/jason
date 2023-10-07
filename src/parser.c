@@ -42,7 +42,6 @@ void jason_parser_free(jason_parser *parser) {
     free(parser);
 }
 
-// TODO: need to recognise when key
 static jason_parse_result jason_parse_next(jason_parser *parser) {
     switch (parser->json[parser->_pos]) {
         case '{':
@@ -80,5 +79,13 @@ jason_parse_result jason_parser_run(jason_parser *parser) {
         return JASON_PARSE_UNEXPECTED_END;
     }
 
-    return jason_parse_next(parser);
+    while (parser->_pos < parser->json_len) {
+        jason_parse_result result = jason_parse_next(parser);
+
+        if (result != JASON_PARSE_OK) {
+            return result;
+        }
+    }
+
+    return JASON_PARSE_OK; // TODO: is this correct? could it be unexpected end in some cases? check subprocessors fully consume
 }
