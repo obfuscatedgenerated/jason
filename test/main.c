@@ -1,5 +1,4 @@
 #include "parser.h"
-#include "subparsers/boolean.h"
 
 int main() {
     char *json = "true";
@@ -69,7 +68,7 @@ int main() {
 
     jason_parser *parser3 = jason_parser_new(json3, json_len3);
 
-    jason_parse_result result3 = jason_parse_boolean(parser3);
+    jason_parse_result result3 = jason_parse(parser3);
 
     if (result3 != JASON_PARSE_INVALID_TOKEN) {
         return 11;
