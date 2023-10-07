@@ -4,7 +4,7 @@
 
 
 static int push_bool(jason_parser *parser, int value) {
-    jason_token *token = malloc(sizeof(jason_token));
+    struct jason_token *token = malloc(sizeof(struct jason_token));
 
     if (token == NULL) {
         return 1;
@@ -13,7 +13,7 @@ static int push_bool(jason_parser *parser, int value) {
     token->type = JASON_TYPE_BOOLEAN;
     token->value.boolean = value;
 
-    jason_tokens_ll_node *node = malloc(sizeof(jason_tokens_ll_node));
+    struct jason_tokens_ll_node *node = malloc(sizeof(struct jason_tokens_ll_node));
 
     if (node == NULL) {
         free(token);

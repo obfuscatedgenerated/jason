@@ -8,7 +8,7 @@
 
 struct kv_entry_s {
     char *key;
-    void *value;
+    struct jason_token *value;
 };
 
 typedef struct kv_entry_s kv_entry;
@@ -27,8 +27,8 @@ PUBLIC kv_dict* new_dict(void);
 PUBLIC void free_dict(kv_dict *dict);
 
 // returns 1 on failure
-PUBLIC int set_item(kv_dict *dict, char *key, size_t key_size, void *value);
+PUBLIC int set_item(kv_dict *dict, char *key, size_t key_size, struct jason_token *value);
 
-PUBLIC void *get_item(kv_dict *dict, char *key, size_t key_size);
+PUBLIC struct jason_token *get_item(kv_dict *dict, char *key, size_t key_size);
 
 #endif //FNV1A_HASHTABLE_KV_DICT_H

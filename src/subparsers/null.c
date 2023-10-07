@@ -5,7 +5,7 @@
 
 // TODO: unify push methods into a single push, taking args at specific points for certain types
 static int push_null(jason_parser *parser) {
-    jason_token *token = malloc(sizeof(jason_token));
+    struct jason_token *token = malloc(sizeof(struct jason_token));
 
     if (token == NULL) {
         return 1;
@@ -13,7 +13,7 @@ static int push_null(jason_parser *parser) {
 
     token->type = JASON_TYPE_NULL;
 
-    jason_tokens_ll_node *node = malloc(sizeof(jason_tokens_ll_node));
+    struct jason_tokens_ll_node *node = malloc(sizeof(struct jason_tokens_ll_node));
 
     if (node == NULL) {
         free(token);

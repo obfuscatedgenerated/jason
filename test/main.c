@@ -12,7 +12,7 @@ int main() {
         return 1;
     }
 
-    jason_tokens_ll_node *node = parser->_tokens_head;
+    struct jason_tokens_ll_node *node = parser->_tokens_head;
 
     if (node == NULL) {
         return 2;
@@ -43,7 +43,7 @@ int main() {
         return 6;
     }
 
-    jason_tokens_ll_node *node2 = parser2->_tokens_head;
+    struct jason_tokens_ll_node *node2 = parser2->_tokens_head;
 
     if (node2 == NULL) {
         return 7;
@@ -87,7 +87,7 @@ int main() {
         return 12;
     }
 
-    jason_tokens_ll_node *node4 = parser4->_tokens_head;
+    struct jason_tokens_ll_node *node4 = parser4->_tokens_head;
 
     if (node4 == NULL) {
         return 13;

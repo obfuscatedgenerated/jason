@@ -32,7 +32,7 @@ void free_dict(kv_dict *dict) {
     free(dict);
 }
 
-static int raw_set(kv_entry *entries, size_t capacity, char *key, size_t key_size, void *value) {
+static int raw_set(kv_entry *entries, size_t capacity, char *key, size_t key_size, struct jason_token *value) {
     kv_entry *entry = malloc(sizeof(kv_entry));
 
     if (entry == NULL) {
@@ -102,7 +102,7 @@ static int expand(kv_dict *dict) {
 }
 
 
-int set_item(kv_dict *dict, char *key, size_t key_size, void *value) {
+int set_item(kv_dict *dict, char *key, size_t key_size, struct jason_token *value) {
     if (value == NULL) {
         return 1;
     }
@@ -127,7 +127,7 @@ int set_item(kv_dict *dict, char *key, size_t key_size, void *value) {
     return 0;
 }
 
-void *get_item(kv_dict *dict, char *key, size_t key_size) {
+struct jason_token *get_item(kv_dict *dict, char *key, size_t key_size) {
     uint64_t hash = fnv1a(key, key_size);
 
     // use AND to encode hash in terms of our array's indices (guess at index)
