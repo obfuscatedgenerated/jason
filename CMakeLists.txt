@@ -15,13 +15,3 @@ target_link_libraries(jason_test jason)
 enable_testing()
 
 add_test(NAME jason_test COMMAND jason_test)
-
-# run script/gen_headers.cmake when any file in include/ is changed
-file(GLOB_RECURSE INCLUDES "include/*.h")
-add_custom_command(
-        OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/include
-        COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_SOURCE_DIR}/script/gen_headers.cmake
-        DEPENDS ${INCLUDES}
-        COMMENT "Regenerating headers"
-        VERBATIM
-)
