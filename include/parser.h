@@ -1,8 +1,8 @@
 #ifndef JASON_PARSER_H
 #define JASON_PARSER_H
 
-#include "hashtable/jason_object.h"
-#include "lib_def.h"
+#include "./hashtable/jason_object.h"
+#include "./lib_def.h"
 
 typedef enum {
     JASON_PARSE_OK,

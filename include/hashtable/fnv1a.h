@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 #include <stddef.h>
-#include "lib_def.h"
+#include "../lib_def.h"
 
 #define FNV1A_BASIS 0xcbf29ce484222325
 #define FNV1A_PRIME 0x100000001b3

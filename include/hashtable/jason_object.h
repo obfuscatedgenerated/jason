@@ -2,8 +2,8 @@
 #define JASON_OBJECT_H
 
 #include <stddef.h>
-#include "lib_def.h"
-#include "parser.h"
+#include "../lib_def.h"
+#include "../parser.h"
 
 #define INIT_CAPACITY 8
 
