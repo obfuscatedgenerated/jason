@@ -30,7 +30,7 @@ typedef enum {
 struct jason_token_s {
     jason_type type;
     union {
-        int boolean;
+        _Bool boolean;
         double number;
         char *string;
         struct jason_tokens_ll_node_s *array;
