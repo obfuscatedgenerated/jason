@@ -56,10 +56,10 @@ jason_parse_result jason_parse_next(jason_parser *parser) {
         case 'n':
             return jason_parse_null(parser);
         case '-':
-            //return jason_parse_number(parser);
+            return jason_parse_number(parser);
         default:
             if (parser->json[parser->_pos] >= '0' && parser->json[parser->_pos] <= '9') {
-                //return jason_parse_number(parser);
+                return jason_parse_number(parser);
             }
 
             return JASON_PARSE_EXPECTED_TOKEN;
