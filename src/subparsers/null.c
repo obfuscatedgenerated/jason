@@ -4,7 +4,7 @@
 
 
 // TODO: unify push methods into a single push, taking args at specific points for certain types
-static int push_null(jason_parser *parser) {
+static _Bool push_null(jason_parser *parser) {
     jason_token *token = malloc(sizeof(jason_token));
 
     if (token == NULL) {

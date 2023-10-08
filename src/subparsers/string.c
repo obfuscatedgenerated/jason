@@ -2,7 +2,7 @@
 
 #include <stdlib.h>
 
-static int push_string(jason_parser *parser, char *value) {
+static _Bool push_string(jason_parser *parser, char *value) {
     jason_token *token = malloc(sizeof(jason_token));
 
     if (token == NULL) {

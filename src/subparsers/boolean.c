@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 
-static int push_bool(jason_parser *parser, int value) {
+static _Bool push_bool(jason_parser *parser, int value) {
     jason_token *token = malloc(sizeof(jason_token));
 
     if (token == NULL) {
