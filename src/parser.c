@@ -66,6 +66,7 @@ jason_parse_result jason_parse_next(jason_parser *parser) {
     }
 }
 
+// TODO: filter out whitespace (not in strings/inside tokens)
 jason_parse_result jason_parser_run(jason_parser *parser) {
     if (parser == NULL) {
         return JASON_PARSE_NULL_PARSER;

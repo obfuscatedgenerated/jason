@@ -34,6 +34,8 @@ static int push_string(jason_parser *parser, char *value) {
 }
 
 // TODO: ensure security. we're not using strcpy, so it's quite safe, but we should still check.
+// TODO: ensure meeting standard https://www.json.org/json-en.html
+// TODO: support unicode? might have to change input type (and therefore adjust some other funcs to support it)
 jason_parse_result jason_parse_string(jason_parser *parser) {
     if (parser->json[parser->_pos] != '"') {
         return JASON_PARSE_EXPECTED_TOKEN;
