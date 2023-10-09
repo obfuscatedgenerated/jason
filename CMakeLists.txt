@@ -33,7 +33,7 @@ add_test(NAME jason_full_access_test COMMAND jason_full_access_test)
 add_test(NAME jason_priv_test COMMAND jason_priv_test)
 
 
-# run script/public_headers.sh (or .bat on windows) when include files change
+# run script/public_headers.sh (or .bat on windows)
 set(SCRIPT_ARG0 "${CMAKE_SOURCE_DIR}/include")
 set(SCRIPT_ARG1 "${CMAKE_BINARY_DIR}")
 if (WIN32)
@@ -51,6 +51,11 @@ add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/include/
         COMMENT "Generating public headers"
         VERBATIM)
 add_custom_target(public_headers ALL DEPENDS ${CMAKE_BINARY_DIR}/include/)
+
+# also run the script now
+message(STATUS "Generating public headers (first time)")
+execute_process(COMMAND ${CMAKE_SOURCE_DIR}/script/public_headers${SCRIPT_SUFFIX} ${SCRIPT_ARG0} ${SCRIPT_ARG1}
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 
 
 # installation target
