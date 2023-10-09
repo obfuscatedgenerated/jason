@@ -15,21 +15,13 @@ configure_file(src/${PROJECT_NAME}.pc.in ${PROJECT_NAME}.pc @ONLY)
 set_target_properties(jason PROPERTIES VERSION ${PROJECT_VERSION})
 set_target_properties(jason PROPERTIES SOVERSION ${PROJECT_VERSION_MAJOR})
 
-file(GLOB_RECURSE FULL_ACCESS_TEST_SOURCES "test/full_access/*.c")
-add_executable(jason_full_access_test ${FULL_ACCESS_TEST_SOURCES})
-target_link_libraries(jason_full_access_test jason)
-
-target_compile_definitions(jason PRIVATE JASON_SHOW_PRIVATES)
-target_compile_definitions(jason_full_access_test PRIVATE JASON_SHOW_PRIVATES)
-
-file(GLOB_RECURSE PRIV_TEST_SOURCES "test/priv/*.c")
-add_executable(jason_priv_test ${PRIV_TEST_SOURCES})
-target_link_libraries(jason_priv_test jason)
+file(GLOB_RECURSE TEST_SOURCES "test/*.c")
+add_executable(jason_test ${TEST_SOURCES})
+target_link_libraries(jason_test jason)
 
 enable_testing()
 
-add_test(NAME jason_full_access_test COMMAND jason_full_access_test)
-add_test(NAME jason_priv_test COMMAND jason_priv_test)
+add_test(NAME jason_test COMMAND jason_test)
 
 
 # run script/public_headers.sh (or .bat on windows)
