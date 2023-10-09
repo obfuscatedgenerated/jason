@@ -33,6 +33,26 @@ add_test(NAME jason_full_access_test COMMAND jason_full_access_test)
 add_test(NAME jason_priv_test COMMAND jason_priv_test)
 
 
+# run script/public_headers.sh (or .bat on windows) when include files change
+set(SCRIPT_ARG0 "${CMAKE_SOURCE_DIR}/include")
+set(SCRIPT_ARG1 "${CMAKE_BINARY_DIR}")
+if (WIN32)
+    set(SCRIPT_SUFFIX ".bat")
+    string(REPLACE "/" "\\" SCRIPT_ARG0 "${SCRIPT_ARG0}")
+    string(REPLACE "/" "\\" SCRIPT_ARG1 "${SCRIPT_ARG1}")
+else()
+    set(SCRIPT_SUFFIX ".sh")
+endif()
+
+add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/include/
+        COMMAND ${CMAKE_SOURCE_DIR}/script/public_headers${SCRIPT_SUFFIX} ${SCRIPT_ARG0} ${SCRIPT_ARG1}
+        DEPENDS ${HEADERS}
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+        COMMENT "Generating public headers"
+        VERBATIM)
+add_custom_target(public_headers ALL DEPENDS ${CMAKE_BINARY_DIR}/include/)
+
+
 # installation target
 include(GNUInstallDirs)
 
