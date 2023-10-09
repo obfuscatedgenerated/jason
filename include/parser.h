@@ -50,10 +50,10 @@ typedef struct {
     char *json;
     size_t json_len;
 
-    size_t _pos;
+    size_t _pos; // #PRIVATE
 
-    struct jason_tokens_ll_node_s *_tokens_head;
-    struct jason_tokens_ll_node_s *_tokens_current;
+    struct jason_tokens_ll_node_s *_tokens_head; // #PRIVATE
+    struct jason_tokens_ll_node_s *_tokens_current; // #PRIVATE
 } jason_parser;
 
 

@@ -15,9 +15,9 @@ jason_object *jason_object_new(void) {
     dict->capacity = INIT_CAPACITY;
 
     // allocate entry space and zero it out (so values are clearly NULL when unset)
-    dict->entries = calloc(dict->capacity, sizeof(jason_object_entry));
+    dict->_entries = calloc(dict->capacity, sizeof(jason_object_entry));
 
-    if (dict->entries == NULL) {
+    if (dict->_entries == NULL) {
         free(dict);
         return NULL;
     }
@@ -28,7 +28,7 @@ jason_object *jason_object_new(void) {
 void jason_object_free(jason_object *dict) {
     // TODO: free each entry
     // iterating each entry and freeing it causes a corruption error
-    free(dict->entries);
+    free(dict->_entries);
     free(dict);
 }
 
@@ -80,7 +80,7 @@ static int expand(jason_object *dict) {
 
     // migrate old non-null entries
     for (size_t i = 0; i < dict->capacity; i++) {
-        jason_object_entry entry = dict->entries[i];
+        jason_object_entry entry = dict->_entries[i];
 
         if (entry.key != NULL) {
             int set_err = raw_set(new_entries, new_capacity, entry.key, strlen(entry.key), entry.value);
@@ -93,9 +93,9 @@ static int expand(jason_object *dict) {
     }
 
     // free old entries
-    free(dict->entries);
+    free(dict->_entries);
 
-    dict->entries = new_entries;
+    dict->_entries = new_entries;
     dict->capacity = new_capacity;
 
     return 0;
@@ -116,7 +116,7 @@ int jason_object_set(jason_object *dict, char *key, size_t key_size, struct jaso
         }
     }
 
-    int set_err = raw_set(dict->entries, dict->capacity, key, key_size, value);
+    int set_err = raw_set(dict->_entries, dict->capacity, key, key_size, value);
 
     if (set_err) {
         return 1;
@@ -133,10 +133,10 @@ struct jason_token_s *jason_object_get(jason_object *dict, char *key, size_t key
     // use AND to encode hash in terms of our array's indices (guess at index)
     size_t index = hash & (dict->capacity - 1);
 
-    while (dict->entries[index].key != NULL) {
+    while (dict->_entries[index].key != NULL) {
         // check if the key is the one we're getting
-        if (strcmp(dict->entries[index].key, key) == 0) {
-            return dict->entries[index].value;
+        if (strcmp(dict->_entries[index].key, key) == 0) {
+            return dict->_entries[index].value;
         }
 
         index++;

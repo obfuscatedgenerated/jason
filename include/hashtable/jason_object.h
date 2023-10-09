@@ -15,7 +15,7 @@ struct jason_object_entry_s {
 typedef struct jason_object_entry_s jason_object_entry;
 
 struct jason_object_s {
-    jason_object_entry *entries;
+    jason_object_entry *_entries; // #PRIVATE
     size_t size;
     size_t capacity;
 };
