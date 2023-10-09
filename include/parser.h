@@ -61,9 +61,7 @@ PUBLIC jason_parser *jason_parser_new(char *json, size_t json_len);
 
 PUBLIC void jason_parser_free(jason_parser *parser);
 
-#ifdef JASON_SHOW_PRIVATES
 PRIVATE jason_parse_result jason_parse_next(jason_parser *parser);
-#endif
 
 PUBLIC jason_parse_result jason_parser_run(jason_parser *parser);
 
