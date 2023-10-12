@@ -34,6 +34,7 @@ void jason_parser_free(jason_parser *parser) {
         struct jason_tokens_ll_node_s *node = parser->_tokens_head;
         parser->_tokens_head = parser->_tokens_head->next;
 
+        // TODO: split jason_token into its own translation unit? make a formal jason_token_new method?
         //jason_token_free(node->token);
         free(node->token);
         free(node);
